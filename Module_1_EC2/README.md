@@ -16,6 +16,10 @@ Welcome to the **EC2 & Compute Management** module. This directory contains prod
 | **`06_manage_security_groups.py`** | Configures cloud firewalls | Ingress rules authorization (SSH & HTTP ports). |
 | **`07_ebs_snapshots.py`** | Automated backups & retention | Cross-timezone lifecycle cleanup & multi-tag filtering. |
 | **`08_cleanup_resources.py`** | Sweeps orphaned AWS resources | Detects and releases unused EIPs & unattached EBS volumes. |
+| **`09_auto_scaling_management.py`** | Adjusts Auto Scaling limits | Modifies ASG capacity parameters (`DesiredCapacity`, `MinSize`, `MaxSize`). |
+| **`10_list_enabled_regions.py`** | Queries active AWS regions | Account-level endpoint discovery via `describe_regions`. |
+| **`11_ec2_health_check_report.py`** | Multi-region health audit | Evaluates System & Instance checks using `describe_instance_status`. |
+| **`12_change_instance_type.py`** | Resizes instances safely | Vertical scaling automation using state waiters and `modify_instance_attribute`. |
 
 ---
 
@@ -32,16 +36,15 @@ Welcome to the **EC2 & Compute Management** module. This directory contains prod
 
 Before executing any script in this module, ensure you have:
 
-1. **Python 3.8+** installed.
 2. **Boto3** library installed:
    ```bash
    pip install boto3
 3. **AWS CLI Credentials** configured:
    ```bash
    aws configure
-   ```
+   ``` 
 
-
+   
 
 
    
