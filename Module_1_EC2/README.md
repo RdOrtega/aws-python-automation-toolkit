@@ -36,6 +36,12 @@ Before executing any script in this module, ensure you have:
 2. **Boto3** library installed:
    ```bash
    pip install boto3
+  ```
+```bash
+   aws configure
+```
+
+
 
 
 
