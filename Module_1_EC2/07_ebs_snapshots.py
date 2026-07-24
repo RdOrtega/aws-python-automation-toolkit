@@ -3,8 +3,8 @@ from datetime import datetime, timedelta, timezone
 from botocore.exceptions import ClientError
 
 # --- CONFIGURATION VARIABLES ---
-TARGET_TAG_KEY = 'Environment'
-TARGET_TAG_VALUE = 'Development'
+TARGET_TAG_KEY = 'Area'
+TARGET_TAG_VALUES = ['Contabilidad', 'Ventas', 'RecursosHumanos', 'Sistemas']
 RETENTION_DAYS = 30  # Snapshots older than this will be destroyed
 
 def backup_ebs_volumes():
@@ -12,10 +12,10 @@ def backup_ebs_volumes():
     Finds targeted EC2 instances and backups their attached EBS volumes.
     """
     ec2 = boto3.resource('ec2')
-    filters = [{'Name': f'tag:{TARGET_TAG_KEY}', 'Values': [TARGET_TAG_VALUE]}]
+    filters = [{'Name': f'tag:{TARGET_TAG_KEY}', 'Values': TARGET_TAG_VALUES}]
     
     try:
-        print(f"🔍 [BACKUP] Searching for instances (Tag: [{TARGET_TAG_KEY} : {TARGET_TAG_VALUE}])...")
+        print(f"🔍 [BACKUP] Searching for instances (Tag: [{TARGET_TAG_KEY} : {TARGET_TAG_VALUES}])...")
         instances = list(ec2.instances.filter(Filters=filters))
         
         if not instances:
