@@ -37,9 +37,7 @@ Before executing any script in this module, ensure you have:
    ```bash
    pip install boto3
   ```
-```bash
    aws configure
-```
 
 
 
