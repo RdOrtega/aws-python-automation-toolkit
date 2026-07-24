@@ -39,6 +39,7 @@ Before executing any script in this module, ensure you have:
 3. **AWS CLI Credentials** configured:
    ```bash
    aws configure
+   ```
 
 
 
