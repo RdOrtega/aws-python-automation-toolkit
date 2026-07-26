@@ -24,7 +24,7 @@ def create_ec2_instance(image_id, instance_type, key_name, tag_name):
                     'ResourceType': 'instance',
                     'Tags': [
                         {'Key': 'Name', 'Value': tag_name},
-                        {'Key': 'Inventory', 'Value': 'City_Med'}
+                        {'Key': 'Inventory', 'Value': 'city_med'}
                     ]
                 }
             ]
