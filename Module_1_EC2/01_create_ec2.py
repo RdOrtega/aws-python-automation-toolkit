@@ -1,18 +1,14 @@
-
 import boto3
 from botocore.exceptions import ClientError
 
-def create_ec2_instance(image_id, instance_type, key_name, tag_name):
+def create_ec2_instance(image_id, instance_type, key_name, tag_name, area, assigned_to):
     """
     Provisions a new EC2 instance, adds tags, and waits for it to be running.
     """
-    # Initialize the EC2 resource
     ec2 = boto3.resource('ec2')
-
     try:
         print(f"🔄 Provisioning a new {instance_type} instance...")
         
-        # Create the instance
         instances = ec2.create_instances(
             ImageId=image_id,
             MinCount=1,
@@ -24,8 +20,8 @@ def create_ec2_instance(image_id, instance_type, key_name, tag_name):
                     'ResourceType': 'instance',
                     'Tags': [
                         {'Key': 'Name', 'Value': tag_name},
-                        {'Key': 'Inventory', 'Value': 'city_med'},
-                        {'Key': 'AssignedTo', 'Value':'Pedro'}
+                        {'Key': 'Area', 'Value': area},
+                        {'Key': 'AssignedTo', 'Value': assigned_to}
                     ]
                 }
             ]
@@ -33,11 +29,8 @@ def create_ec2_instance(image_id, instance_type, key_name, tag_name):
         
         instance = instances[0]
         
-        # Pause the script until the instance is fully running
         print(f"⏳ Waiting for instance {instance.id} to enter 'running' state...")
         instance.wait_until_running()
-        
-        # Reload the instance attributes to get the dynamically assigned Public IP
         instance.reload()
         
         print(f"✅ Success! Instance {instance.id} is now RUNNING.")
@@ -50,22 +43,15 @@ def create_ec2_instance(image_id, instance_type, key_name, tag_name):
         print(f"❌ Error creating instance: {e}")
         return None
 
+
 if __name__ == "__main__":
-    # --- CONFIGURATION VARIABLES ---
-    # Important: Replace these with valid values from your AWS Console before running locally.
-    
-    # Amazon Linux 2023 AMI (us-east-1 as an example)
-    AMI_ID = 'ami-0c7217cdde317cfec' 
-    
-    # t2.micro is Free Tier eligible
+    AMI_ID = 'ami-0c7217cdde317cfec'
     INSTANCE_TYPE = 't2.micro'
-    
-    # Must match an existing Key Pair in your AWS EC2 Console
-    KEY_PAIR_NAME = 'your-aws-key-pair-name' 
-    
-    # Tag that will appear in the Name column in AWS
+    KEY_PAIR_NAME = 'your-aws-key-pair-name'
     SERVER_NAME = 'Dev-Web-Server-01'
+    Area_Tag = 'Inventory'
+    Assigned_To = 'Pedro'
     
     print("🚀 Starting AWS EC2 Provisioning Script...")
-    create_ec2_instance(AMI_ID, INSTANCE_TYPE, KEY_PAIR_NAME, SERVER_NAME)
+    create_ec2_instance(AMI_ID, INSTANCE_TYPE, KEY_PAIR_NAME, SERVER_NAME, Area_Tag, Assigned_To)
   
