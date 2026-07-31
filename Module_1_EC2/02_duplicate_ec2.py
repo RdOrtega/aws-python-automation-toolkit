@@ -89,7 +89,6 @@ def duplicate_instance(source_server_name, clone_name, assigned_to, iam_profile_
                 }
             ]
         )
-        
         clone = instances[0]
         print(f"⏳ Waiting for clone instance {clone.id} to enter 'running' state...")
         clone.wait_until_running()
@@ -105,12 +104,11 @@ def duplicate_instance(source_server_name, clone_name, assigned_to, iam_profile_
         print(f"❌ AWS API Error during duplication: {e}")
         return None
 
-
 if __name__ == "__main__":
     
     # --- CONFIGURATION PARAMETERS ---
     SOURCE_SERVER_NAME = 'AMI_Workspace'     # Target template instance Name tag created in script 01
-    
+
     # New workstation configuration for onboarded client user
     CLONE_SERVER_NAME = 'Slalom-Workstation-Carlos'
     ASSIGNED_TO = 'Carlos_Luis'
@@ -124,5 +122,4 @@ if __name__ == "__main__":
         clone_name=CLONE_SERVER_NAME,
         assigned_to=ASSIGNED_TO,
         iam_profile_name=IAM_PROFILE
-    )
-    
+    )  
