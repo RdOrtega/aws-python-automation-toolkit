@@ -54,18 +54,13 @@ def create_ec2_instance(image_id, instance_type, tag_name, assigned_to, iam_prof
         print(f"❌ Error creating instance: {e}")
         return None
 
-
 if __name__ == "__main__":
     # --- CONFIGURATION PARAMETERS ---
    
     AMI_ID = 'ami-0c7217cdde317cfec'  # Base Ubuntu AMI ID for the target AWS region
-    
     INSTANCE_TYPE = 't2.micro'      # Instance type eligible for AWS Free Tier
-    
     SERVER_NAME = 'AMI_Workspace'    # Template instance name used as the baseline workstation for clients
-    
     ASSIGNED_TO = 'It_Admin'        # Administrative owner tag
-  
     IAM_PROFILE = 'SSM-EC2-Role'     # Pre-configured IAM Instance Profile granting AmazonSSMManagedInstanceCore access
     
     print("🚀 Starting AWS EC2 Provisioning Script...")
