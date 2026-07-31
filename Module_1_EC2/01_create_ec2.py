@@ -1,7 +1,7 @@
 import boto3
 from botocore.exceptions import ClientError
 
-def create_ec2_instance(image_id, instance_type, tag_name, area, assigned_to, iam_profile_name):
+def create_ec2_instance(image_id, instance_type, tag_name, assigned_to, iam_profile_name):
     """
     Provisions a new EC2 instance, adds tags, and waits for it to be running.
     """
@@ -22,7 +22,6 @@ def create_ec2_instance(image_id, instance_type, tag_name, area, assigned_to, ia
                     'ResourceType': 'instance',
                     'Tags': [
                         {'Key': 'Name', 'Value': tag_name},
-                        {'Key': 'Area', 'Value': area},
                         {'Key': 'AssignedTo', 'Value': assigned_to}
                     ]
                 }
@@ -49,11 +48,10 @@ def create_ec2_instance(image_id, instance_type, tag_name, area, assigned_to, ia
 if __name__ == "__main__":
     AMI_ID = 'ami-0c7217cdde317cfec'
     INSTANCE_TYPE = 't2.micro'
-    SERVER_NAME = 'Dev-Web-Server-01'
-    Area_Tag = 'Inventory'
+    SERVER_NAME = 'Dev-Tech-AppServer-01'
     Assigned_To = 'Pedro'
     IAM_PROFILE = 'SSM-EC2-Role'  # el nombre del Instance Profile que creaste en IAM
     
     print("🚀 Starting AWS EC2 Provisioning Script...")
-    create_ec2_instance(AMI_ID, INSTANCE_TYPE, SERVER_NAME, Area_Tag, Assigned_To, IAM_PROFILE)
+    create_ec2_instance(AMI_ID, INSTANCE_TYPE, SERVER_NAME, Assigned_To, IAM_PROFILE)
   
