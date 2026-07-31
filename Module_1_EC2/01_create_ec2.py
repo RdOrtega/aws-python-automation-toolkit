@@ -48,8 +48,8 @@ def create_ec2_instance(image_id, instance_type, tag_name, assigned_to, iam_prof
 if __name__ == "__main__":
     AMI_ID = 'ami-0c7217cdde317cfec'
     INSTANCE_TYPE = 't2.micro'
-    SERVER_NAME = 'Dev-Tech-AppServer-01'
-    Assigned_To = 'Pedro'
+    SERVER_NAME = 'Dev-Tech-AppServer'
+    Assigned_To = 'Nombre_User'
     IAM_PROFILE = 'SSM-EC2-Role'  # el nombre del Instance Profile que creaste en IAM
     
     print("🚀 Starting AWS EC2 Provisioning Script...")
