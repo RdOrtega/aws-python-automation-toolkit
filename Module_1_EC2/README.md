@@ -62,3 +62,40 @@ python 01_create_ec2.py
 ```
 
 Scripts that operate on existing resources (e.g. `04`–`09`, `11`, `12`) typically filter by tags — review the script's configuration section before running against production resources.
+
+---
+
+## 📸 Evidence / Screenshots
+
+Execution evidence lives in the [`/screenshots`](./screenshots) folder — each entry pairs the terminal output with the corresponding AWS Console view, to confirm the script actually ran against real AWS resources (not just that it compiles).
+
+<!-- Fill in with real screenshots as you capture them. Suggested priority: 01, 07, 08, 10 — these show the most technically interesting behavior. -->
+
+### `01_create_ec2.py`
+<!-- ![Terminal output](screenshots/01_create_ec2_terminal.png) -->
+<!-- ![AWS Console](screenshots/01_create_ec2_console.png) -->
+
+### `07_ebs_snapshots.py`
+<!-- ![Terminal output](screenshots/07_ebs_snapshots_terminal.png) -->
+<!-- ![AWS Console](screenshots/07_ebs_snapshots_console.png) -->
+
+### `08_cleanup_resources.py`
+<!-- ![Terminal output](screenshots/08_cleanup_resources_terminal.png) -->
+<!-- ![AWS Console](screenshots/08_cleanup_resources_console.png) -->
+
+### `10_ec2_health_check_report.py`
+<!-- ![Terminal output](screenshots/10_health_check_terminal.png) -->
+<!-- ![AWS Console](screenshots/10_health_check_console.png) -->
+
+---
+
+## 🐛 Troubleshooting / Common Issues
+
+<!-- Fill in with errors you actually hit while building/running these scripts. Table format below — add a row per real error. -->
+
+| Error | Cause | Fix |
+|---|---|---|
+| *(pending — add real errors you've encountered)* | | |
+
+---11`, `12`) typically filter by tags — review the script's configuration section before running against production resources.
+
