@@ -21,7 +21,7 @@ if __name__ == "__main__":
     create_ec2_instance(
         image_id=CUSTOM_AMI_ID,
         instance_type='t2.micro',
-        tag_name='Slalom-Workstation-Laura',
+        tag_name='Slalom-Workstation',
         assigned_to='Laura_Gomez',
         iam_profile_name='SSM-EC2-Role'
     )
