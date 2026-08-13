@@ -1,10 +1,12 @@
 
 import boto3
-from botocore.exceptions import ClientError, NoCredentialsError
+from botocore.exceptions import ClientError
 
-def get_enabled_aws_regions():
+
+def get_enabled_aws_regions() -> list:
     """
     Queries AWS EC2 global endpoint to list all currently enabled regions for this account.
+    Returns an alphabetically sorted list of region names.
     """
     # EC2 endpoint in us-east-1 is used to query global region availability
     ec2_client = boto3.client('ec2', region_name='us-east-1')
@@ -27,11 +29,11 @@ def get_enabled_aws_regions():
             print(f"{name:<20} | {opt_in_status}")
 
         print("-" * 45)
+
+        # Ensure the returned list is alphabetically sorted
+        region_names.sort()
         return region_names
 
-    except NoCredentialsError:
-        print("❌ No AWS credentials found. Run 'aws configure' first.")
-        return []
     except ClientError as e:
         print(f"❌ AWS API Error: {e}")
         return []
