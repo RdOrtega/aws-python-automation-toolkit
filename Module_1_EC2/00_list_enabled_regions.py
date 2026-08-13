@@ -1,6 +1,6 @@
 
 import boto3
-from botocore.exceptions import ClientError
+from botocore.exceptions import ClientError, NoCredentialsError
 
 def get_enabled_aws_regions():
     """
@@ -8,10 +8,9 @@ def get_enabled_aws_regions():
     """
     # EC2 endpoint in us-east-1 is used to query global region availability
     ec2_client = boto3.client('ec2', region_name='us-east-1')
-
     try:
         print("🌐 Querying AWS for enabled regions in your account...\n")
-        
+
         # 'AllRegions=False' filters only regions enabled for your AWS account
         response = ec2_client.describe_regions(AllRegions=False)
         regions = response.get('Regions', [])
@@ -30,6 +29,9 @@ def get_enabled_aws_regions():
         print("-" * 45)
         return region_names
 
+    except NoCredentialsError:
+        print("❌ No AWS credentials found. Run 'aws configure' first.")
+        return []
     except ClientError as e:
         print(f"❌ AWS API Error: {e}")
         return []
@@ -37,7 +39,8 @@ def get_enabled_aws_regions():
         print(f"❌ An unexpected error occurred: {e}")
         return []
 
+
 if __name__ == "__main__":
     enabled_regions = get_enabled_aws_regions()
     print(f"\n💡 Ready-to-use list of regions: {enabled_regions}")
-
+    
